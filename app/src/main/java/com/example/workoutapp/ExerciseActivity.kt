@@ -3,12 +3,17 @@ package com.example.workoutapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.workoutapp.databinding.ActivityExerciseBinding
+import org.w3c.dom.Text
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class ExerciseActivity : AppCompatActivity() {
+class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var binding: ActivityExerciseBinding? = null
 
@@ -19,6 +24,8 @@ class ExerciseActivity : AppCompatActivity() {
 
     private var exerciseList : ArrayList<ExerciseModel>? = null
     private var currentExercisePosition = -1
+
+    private var tts: TextToSpeech? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +38,14 @@ class ExerciseActivity : AppCompatActivity() {
 
         startTimerRest(restTimerDuration)
 
+
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
+        tts = TextToSpeech(this@ExerciseActivity, this)
         exerciseList = Constants.defaultExerciseList()
+        binding?.tvUpComingLabel?.text = exerciseList!![currentExercisePosition+1].getName()
 
         binding?.toolbarExercise?.setNavigationOnClickListener {
             onBackPressed()
@@ -56,7 +66,11 @@ class ExerciseActivity : AppCompatActivity() {
 
         if(currentExercisePosition >= 0){
             binding?.tvTitleRest?.text = "Rest"
+            binding?.tvUpComingLabel?.text = exerciseList!![currentExercisePosition+1].getName()
+
         }
+
+        speakOut(binding?.tvTitleRest?.text.toString())
 
         binding?.llExercise?.visibility = View.INVISIBLE
         binding?.llRest?.visibility = View.VISIBLE
@@ -64,14 +78,15 @@ class ExerciseActivity : AppCompatActivity() {
         binding?.progressBar?.progress = 0
         pbProgress = 0
 
-
-
         countDownTimer = object : CountDownTimer(timerDurationL, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 pbProgress++
-                binding?.tvTimer?.text =(timerInSeconds - pbProgress).toString()
+                binding?.tvTimer?.text =(timerInSeconds - pbProgress + 1).toString()
                 binding?.progressBar?.progress = (timerInSeconds - pbProgress).toInt()
+                if((timerInSeconds - pbProgress) < 3){
+                    speakOut((timerInSeconds - pbProgress + 1).toString())
+                }
             }
 
             override fun onFinish() {
@@ -92,13 +107,18 @@ class ExerciseActivity : AppCompatActivity() {
         binding?.progressBarExercise?.progress = 0
         pbProgress = 0
 
+        speakOut(exerciseList!![currentExercisePosition].getName())
+
 
         countDownTimer = object : CountDownTimer(timerDurationL, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 pbProgress++
-                binding?.tvTimerExercise?.text =(timerInSeconds - pbProgress).toString()
+                binding?.tvTimerExercise?.text =(timerInSeconds - pbProgress + 1).toString()
                 binding?.progressBarExercise?.progress = (timerInSeconds - pbProgress).toInt()
+                if((timerInSeconds - pbProgress) < 3){
+                    speakOut((timerInSeconds - pbProgress + 1).toString())
+                }
             }
 
             override fun onFinish() {
@@ -134,6 +154,19 @@ class ExerciseActivity : AppCompatActivity() {
         resetTimer()
         exerciseTimerDuration = exerciseList!![currentExercisePosition].getExerciseTime()
         startTimerExercise(exerciseTimerDuration)
+    }
+
+    override fun onInit(status: Int) {
+        if(status == TextToSpeech.SUCCESS) {
+            val result = tts!!.setLanguage(Locale.ENGLISH)
+            if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                Log.e("TTS", "the language specified is not supported")
+            }
+        }
+    }
+
+    private fun speakOut(s: String) {
+        tts?.speak(s, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
 
