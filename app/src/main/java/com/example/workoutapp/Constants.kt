@@ -4,11 +4,11 @@ object Constants {
 
     fun defaultExerciseList(): ArrayList<ExerciseModel>{
         val exerciseList = ArrayList<ExerciseModel>()
-        val exercise1 = ExerciseModel(1,"Arm Streching", R.drawable.exercise1, 5000, 10000, false, false )
+        val exercise1 = ExerciseModel(1,"Arm Stretching", R.drawable.exercise1, 5000, 10000, false, false )
         exerciseList.add(exercise1)
-        val exercise2 = ExerciseModel(2,"Leg Streching", R.drawable.exercise2, 5000, 15000, false, false )
+        val exercise2 = ExerciseModel(2,"Leg Stretching", R.drawable.exercise2, 5000, 15000, false, false )
         exerciseList.add(exercise2)
-        val exercise3 = ExerciseModel(3,"Back Streching", R.drawable.exercise3, 10000, 10000, false, false )
+        val exercise3 = ExerciseModel(3,"Back Stretching", R.drawable.exercise3, 10000, 10000, false, false )
         exerciseList.add(exercise3)
         val exercise4 = ExerciseModel(4,"Sit Ups", R.drawable.exercise4,10000, 15000, false, false )
         exerciseList.add(exercise4)
