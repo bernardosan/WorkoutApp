@@ -9,6 +9,8 @@ import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.workoutapp.databinding.ActivityExerciseBinding
 import org.w3c.dom.Text
 import java.lang.Exception
@@ -27,6 +29,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var exerciseList : ArrayList<ExerciseModel>? = null
     private var currentExercisePosition = -1
+
+    private var exerciseAdapter : ExerciseStatusAdapter? = null
 
     private var tts: TextToSpeech? = null
     private var player: MediaPlayer? = null
@@ -55,6 +59,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             onBackPressed()
         }
 
+        setupExerciseStatusRecyclerView()
     }
 
     override fun onDestroy() {
@@ -136,6 +141,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         speakOut(exerciseList!![currentExercisePosition].getName())
 
+        exerciseList!![currentExercisePosition].setIsSelected(true)
+        exerciseAdapter!!.notifyDataSetChanged()
+
 
         countDownTimer = object : CountDownTimer(timerDurationL, 1000) {
 
@@ -150,6 +158,12 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
             override fun onFinish() {
                 binding?.tvTimerExercise?.text = "-"
+
+                exerciseList!![currentExercisePosition].setIsCompleted(true)
+                exerciseList!![currentExercisePosition].setIsSelected(false)
+
+                exerciseAdapter!!.notifyDataSetChanged()
+
                 if(currentExercisePosition < exerciseList?.size!! - 1){
                     setupRestView()
                 } else{
@@ -175,9 +189,15 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         startTimerRest(restTimerDuration)
     }
 
+    private fun setupExerciseStatusRecyclerView(){
+        binding?.rvExerciseStatus?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        exerciseAdapter = ExerciseStatusAdapter(exerciseList!!)
+        binding?.rvExerciseStatus?.adapter = exerciseAdapter
+    }
+
     private fun setupExerciseView(){
         currentExercisePosition++
-        binding?.llRest?.visibility = View.INVISIBLE
+        binding?.llRest?.visibility  = View.INVISIBLE
         resetTimer()
         exerciseTimerDuration = exerciseList!![currentExercisePosition].getExerciseTime()
         startTimerExercise(exerciseTimerDuration)
