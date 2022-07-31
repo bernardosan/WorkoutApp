@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.workoutapp.databinding.ActivityExerciseBinding
 
 
@@ -19,6 +21,8 @@ class ExerciseActivity : AppCompatActivity() {
 
     private var exerciseList : ArrayList<ExerciseModel>? = null
     private var currentExercisePosition = -1
+
+    private var exerciseAdapter : ExerciseStatusAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +45,7 @@ class ExerciseActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        setupExerciseStatusRecyclerView()
     }
 
     override fun onDestroy() {
@@ -92,6 +97,9 @@ class ExerciseActivity : AppCompatActivity() {
         binding?.progressBarExercise?.progress = 0
         pbProgress = 0
 
+        exerciseList!![currentExercisePosition].setIsSelected(true)
+        exerciseAdapter!!.notifyDataSetChanged()
+
 
         countDownTimer = object : CountDownTimer(timerDurationL, 1000) {
 
@@ -103,6 +111,12 @@ class ExerciseActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 binding?.tvTimerExercise?.text = "-"
+
+                exerciseList!![currentExercisePosition].setIsCompleted(true)
+                exerciseList!![currentExercisePosition].setIsSelected(false)
+
+                exerciseAdapter!!.notifyDataSetChanged()
+
                 if(currentExercisePosition < exerciseList?.size!! - 1){
                     setupRestView()
                 } else{
@@ -128,9 +142,15 @@ class ExerciseActivity : AppCompatActivity() {
         startTimerRest(restTimerDuration)
     }
 
+    private fun setupExerciseStatusRecyclerView(){
+        binding?.rvExerciseStatus?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        exerciseAdapter = ExerciseStatusAdapter(exerciseList!!)
+        binding?.rvExerciseStatus?.adapter = exerciseAdapter
+    }
+
     private fun setupExerciseView(){
         currentExercisePosition++
-        binding?.llRest?.visibility = View.INVISIBLE
+        binding?.llRest?.visibility  = View.INVISIBLE
         resetTimer()
         exerciseTimerDuration = exerciseList!![currentExercisePosition].getExerciseTime()
         startTimerExercise(exerciseTimerDuration)

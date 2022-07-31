@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/drawable/item_circular_color_accent_background.xml" value="0.253125" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/drawable/item_circular_color_accent_border.xml" value="0.253125" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/drawable/item_circular_color_gray_background.xml" value="0.1" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/drawable/item_circular_completed_border.xml" value="0.253125" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/drawable/item_circular_selected_border.xml" value="0.253125" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/drawable/item_circular_thin_color_accent_border.xml" value="0.10740740740740741" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/drawable/item_color_accent_border_ripple_background.xml" value="0.253125" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/layout/activity_exercise.xml" value="0.33" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/layout/activity_main.xml" value="0.2171875" />
+        <entry key="..\:/Users/Bernardo/AndroidStudioProjects/Birth2minutes/WorkoutApp/app/src/main/res/layout/item_exercise_status.xml" value="0.25" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/circular_progress_bar.xml" value="0.375" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/circular_progress_gray.xml" value="0.375" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
