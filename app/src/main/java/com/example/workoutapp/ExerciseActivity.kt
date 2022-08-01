@@ -1,5 +1,7 @@
 package com.example.workoutapp
 
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.workoutapp.databinding.ActivityExerciseBinding
 import org.w3c.dom.Text
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,6 +29,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var currentExercisePosition = -1
 
     private var tts: TextToSpeech? = null
+    private var player: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +60,20 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+
         if(countDownTimer != null) {
             resetTimer()
+        }
+
+        if(tts != null){
+            tts?.stop()
+            tts?.shutdown()
+            tts = null
+        }
+
+        if(player != null){
+            player?.stop()
+            player = null
         }
     }
 
@@ -71,12 +87,23 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         speakOut(binding?.tvTitleRest?.text.toString())
-
         binding?.llExercise?.visibility = View.INVISIBLE
         binding?.llRest?.visibility = View.VISIBLE
         binding?.progressBar?.max = timerInSeconds.toInt() -1
         binding?.progressBar?.progress = 0
         pbProgress = 0
+
+
+        try{
+            val soundURI = Uri.parse("android.resource://com.example.workoutapp/" + R.raw.app_src_main_res_raw_press_start)
+            player = MediaPlayer.create(applicationContext, soundURI)
+            player?.isLooping = false
+            player?.start()
+        } catch(e: Exception){
+            e.printStackTrace()
+        }
+
+
 
         countDownTimer = object : CountDownTimer(timerDurationL, 1000) {
 
