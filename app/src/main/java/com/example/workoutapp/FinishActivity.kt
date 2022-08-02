@@ -5,24 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.workoutapp.databinding.ActivityMainBinding
+import com.example.workoutapp.databinding.ActivityFinishBinding
 
-class MainActivity : AppCompatActivity() {
-    private var binding: ActivityMainBinding? = null
+class FinishActivity : AppCompatActivity() {
+    private var binding: ActivityFinishBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityFinishBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        binding?.flStart?.setOnClickListener{
-            val intent = Intent(this, ExerciseActivity::class.java )
+        binding?.flFinish?.setOnClickListener{
+            val intent = Intent(this@FinishActivity, MainActivity::class.java )
             startActivity(intent)
-
         }
-
-
 
     }
 

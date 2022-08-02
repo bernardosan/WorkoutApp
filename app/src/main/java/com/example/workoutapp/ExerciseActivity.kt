@@ -1,5 +1,6 @@
 package com.example.workoutapp
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workoutapp.databinding.ActivityExerciseBinding
@@ -98,7 +100,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding?.progressBar?.progress = 0
         pbProgress = 0
 
-
         try{
             val soundURI = Uri.parse("android.resource://com.example.workoutapp/" + R.raw.app_src_main_res_raw_press_start)
             player = MediaPlayer.create(applicationContext, soundURI)
@@ -107,8 +108,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         } catch(e: Exception){
             e.printStackTrace()
         }
-
-
 
         countDownTimer = object : CountDownTimer(timerDurationL, 1000) {
 
@@ -168,6 +167,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     setupRestView()
                 } else{
                     Toast.makeText(this@ExerciseActivity, "You finished your Workout!", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this@ExerciseActivity, FinishActivity::class.java )
+                    startActivity(intent)
+                    finish()
                 }
 
             }
