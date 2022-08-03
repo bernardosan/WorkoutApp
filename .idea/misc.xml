@@ -10,11 +10,15 @@
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/item_circular_color_accent_border.xml" value="0.3194444444444444" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/item_circular_completed_border.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/item_color_accent_border_ripple_background.xml" value="0.3194444444444444" />
+        <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/item_rectagle_color_accent_border_ripple_background.xml" value="0.3098958333333333" />
+        <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/item_rectangle_color_accent_border.xml" value="0.3098958333333333" />
+        <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_bmi.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_bmicalculator.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_exercise.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_finish.xml" value="0.33" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/c.xml" value="0.19791666666666666" />
-        <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/dialog_custom_back_confirmation.xml" value="7.0" />
+        <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/dialog_custom_back_confirmation.xml" value="0.1" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/item_exercise_status.xml" value="0.29375" />
       </map>
     </option>

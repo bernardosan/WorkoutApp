@@ -31,6 +31,9 @@
         <activity
             android:name=".FinishActivity"
             android:exported="true" />
+        <activity
+            android:name=".BmiActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
