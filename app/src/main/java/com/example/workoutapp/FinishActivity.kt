@@ -17,8 +17,7 @@ class FinishActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         binding?.flFinish?.setOnClickListener{
-            val intent = Intent(this@FinishActivity, MainActivity::class.java )
-            startActivity(intent)
+            finish()
         }
 
     }

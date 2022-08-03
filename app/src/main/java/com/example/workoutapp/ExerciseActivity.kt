@@ -1,5 +1,6 @@
 package com.example.workoutapp
 
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workoutapp.databinding.ActivityExerciseBinding
+import com.example.workoutapp.databinding.DialogCustomBackConfirmationBinding
 import org.w3c.dom.Text
 import java.lang.Exception
 import java.util.*
@@ -62,6 +64,24 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         setupExerciseStatusRecyclerView()
+    }
+
+    override fun onBackPressed() {
+        customDialogBackButton()
+    }
+    private fun customDialogBackButton() {
+        val customDialog = Dialog(this)
+        val dialogBinding = DialogCustomBackConfirmationBinding.inflate(layoutInflater)
+        customDialog.setContentView(dialogBinding.root)
+        customDialog.setCanceledOnTouchOutside(false)
+        dialogBinding.btnYes.setOnClickListener {
+            this@ExerciseActivity.finish()
+            customDialog.dismiss()
+        }
+        dialogBinding.btnNo.setOnClickListener {
+            customDialog.dismiss()
+        }
+        customDialog.show()
     }
 
     override fun onDestroy() {
