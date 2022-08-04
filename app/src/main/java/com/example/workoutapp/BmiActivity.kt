@@ -3,6 +3,7 @@ package com.example.workoutapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.workoutapp.databinding.ActivityBmiBinding
@@ -22,6 +23,14 @@ class BmiActivity : AppCompatActivity() {
 
         binding?.toolbarBmi?.setNavigationOnClickListener {
             onBackPressed()
+        }
+
+        binding?.btnCalculateBMI?.setOnClickListener {
+            if(binding?.cvResult?.visibility == View.VISIBLE) {
+                binding?.cvResult?.visibility = View.INVISIBLE
+            } else{
+                binding?.cvResult?.visibility = View.VISIBLE
+            }
         }
 
     }

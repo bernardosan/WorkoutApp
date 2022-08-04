@@ -3,16 +3,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExerciseActivity">
+    tools:context=".ExerciseActivity"
+    android:orientation="vertical"
+    android:background="@color/colorAccent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarBmi"
         android:layout_width="match_parent"
-        android:theme="@style/ToolbarTheme"
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"
-        app:titleTextColor="@color/colorPrimary"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/colorAccent"
+
         />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvBMI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            /
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BMI Calculator"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="Enter your height and weight to calculate yor BMI"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:autoText="false"
+                    android:hint="Height"
+                    android:inputType="textCapWords"
+                    android:outlineProvider="none"
+                    android:password="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="#7A8089"
+                    android:textIsSelectable="false" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:autoText="false"
+                    android:hint="Weight"
+                    android:inputType="textCapWords"
+                    android:outlineProvider="none"
+                    android:password="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="#7A8089"
+                    android:textIsSelectable="false" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btn_calculateBMI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Calculate"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="12dp"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your BMI is: 30"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:shadowColor="#000000"
+                android:text="Category: Overweight"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 
 </RelativeLayout>

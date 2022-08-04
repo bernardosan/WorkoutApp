@@ -18,5 +18,5 @@
         <item name="colorControlNormal">@color/toolbar_color_control_normal</item>
     </style>
 
-    <color name="toolbar_color_control_normal">#000000</color>
+    <color name="toolbar_color_control_normal">@color/colorAccent</color>
 </resources>
