@@ -35,8 +35,6 @@
             android:layout_margin="16dp"
             android:orientation="vertical">
 
-            /
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,11 +64,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:autoText="false"
                     android:hint="Height"
                     android:inputType="textCapWords"
                     android:outlineProvider="none"
-                    android:password="false"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="#7A8089"
                     android:textIsSelectable="false" />
@@ -88,11 +84,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:autoText="false"
                     android:hint="Weight"
                     android:inputType="textCapWords"
-                    android:outlineProvider="none"
-                    android:password="false"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="#7A8089"
                     android:textIsSelectable="false" />
