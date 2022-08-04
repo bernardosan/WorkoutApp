@@ -1,25 +1,21 @@
 package com.example.workoutapp
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.workoutapp.databinding.ActivityBmiBinding
-import kotlin.math.pow
-import kotlin.math.roundToInt
 
 class BmiActivity : AppCompatActivity() {
     private var binding: ActivityBmiBinding? = null
 
-    private var is_Unit: Boolean = true
-    private var imperial_Unit: Boolean = false
-    private var height: Float = 0.0F
-    private var weight: Float = 0.0F
+    private var isMetric: Boolean = true
+    private var isImperial: Boolean = false
+    private var height: Float? = 0.0F
+    private var heightInches: Float? = 0.0F
+    private var weight: Float? = 0.0F
     private var bmiResult: Float = 0.0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,18 +36,20 @@ class BmiActivity : AppCompatActivity() {
         binding?.btnCalculateBMI?.setOnClickListener {
             it.hideKeyboard()
             binding?.cvResult?.visibility = View.INVISIBLE
-            bmiCalculator()
+            if(isMetric == true){
+                bmiCalculatorMetric()
+            } else if(isImperial == true){
+                bmiCalculatorImperial()
+            }
         }
 
 
         binding?.tvUnit?.setOnClickListener {
-            if(is_Unit == true) {
-                is_Unit = false
-                imperial_Unit = true
+            if(isMetric == true) {
+                toImperialWindow()
 
             } else {
-                is_Unit = true
-                imperial_Unit = false
+                toMetricWindow()
             }
         }
 
@@ -63,27 +61,43 @@ class BmiActivity : AppCompatActivity() {
 
     }
 
-    private fun bmiCalculator(){
-        if(binding?.etHeight?.text!!.isEmpty() || binding?.etWeight?.text!!.isEmpty()) {
+    private fun bmiCalculatorMetric(){
+
+        height = binding?.etHeight?.text!!.toString().toFloat()
+        weight = binding?.etWeight?.text!!.toString().toFloat()
+
+        if(height == null || weight == null) {
             Toast.makeText(this, "Enter your Height and Weight!", Toast.LENGTH_LONG).show()
-        } else if(binding?.etWeight?.text.toString().toInt() <= 0){
+        } else if(weight!! <= 0){
             Toast.makeText(this, "Enter a valid Weight", Toast.LENGTH_LONG).show()
-        } else if(binding?.etHeight?.text.toString().toInt() <= 0) {
+        } else if(weight!! <= 0) {
             Toast.makeText(this, "Enter a valid Height", Toast.LENGTH_LONG).show()
-        } else if (is_Unit == true) {
+        } else if (isMetric == true) {
             binding?.cvResult?.visibility = View.VISIBLE
-            height = binding?.etHeight?.text!!.toString().toFloat()
-            weight = binding?.etWeight?.text!!.toString().toFloat()
-            bmiResult = 10000*weight/(height*height)
-            binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult).toFloat()}"
+            bmiResult = 10000*weight!!/(height!!*height!!)
+            binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult)}"
             binding?.tvBmiCategory?.text = "Category: ${bmiCategory(bmiResult)}"
 
-        } else if (imperial_Unit== true) {
+        }
+    }
+
+    private fun bmiCalculatorImperial(){
+
+        height = binding?.etImperialHeightFeet?.text!!.toString().toFloat()
+        heightInches = binding?.etImperialHeightInches?.text!!.toString().toFloat()
+        weight = binding?.etImperialWeight?.text!!.toString().toFloat()
+
+        if(height == null && heightInches == null && weight == null ) {
+            Toast.makeText(this, "Enter your Height and Weight!", Toast.LENGTH_LONG).show()
+        } else if( weight!! <= 0){
+            Toast.makeText(this, "Enter a valid Weight", Toast.LENGTH_LONG).show()
+        } else if( height!! <= 0 || heightInches!! <= 0) {
+            Toast.makeText(this, "Enter a valid Height", Toast.LENGTH_LONG).show()
+        }  else if (isImperial == true) {
             binding?.cvResult?.visibility = View.VISIBLE
-            height = binding?.etHeight?.text!!.toString().toFloat()
-            weight = binding?.etWeight?.text!!.toString().toFloat()
-            bmiResult = 703*weight/(height*height)
-            binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult).toFloat()}"
+            height = height!!*12 + heightInches!!
+            bmiResult = 703* weight!!/(height!!*height!!)
+            binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult)}"
             binding?.tvBmiCategory?.text = "Category: ${bmiCategory(bmiResult)}"
         }
     }
@@ -99,7 +113,30 @@ class BmiActivity : AppCompatActivity() {
         return "Error"
     }
 
-    fun View.hideKeyboard() {
+    private fun toMetricWindow(){
+        isMetric = true
+        isImperial = false
+        binding?.cvResult?.visibility = View.GONE
+        binding?.tilMetricHeight?.visibility = View.VISIBLE
+        binding?.tilMetricWeight?.visibility = View.VISIBLE
+        binding?.tilImperialHeightFeet?.visibility = View.GONE
+        binding?.tilImperialHeightInches?.visibility = View.GONE
+        binding?.tilImperialWeight?.visibility = View.GONE
+    }
+
+    private fun toImperialWindow(){
+        isMetric = false
+        isImperial = true
+        binding?.cvResult?.visibility = View.GONE
+        binding?.tilMetricHeight?.visibility = View.GONE
+        binding?.tilMetricHeight?.visibility = View.GONE
+        binding?.tilMetricWeight?.visibility = View.GONE
+        binding?.tilImperialHeightFeet?.visibility = View.VISIBLE
+        binding?.tilImperialHeightInches?.visibility = View.VISIBLE
+        binding?.tilImperialWeight?.visibility = View.VISIBLE
+    }
+
+    private fun View.hideKeyboard() {
         val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(windowToken, 0)
     }

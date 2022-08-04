@@ -2,4 +2,15 @@
     <string name="app_name">WorkoutApp</string>
     <string name="title_description">Workout App</string>
     <string name="btn_start_text">START EXERCISE</string>
+    <string name="change_units">Change Units</string>
+    <string name="bmi_calculator">BMI Calculator</string>
+    <string name="height_cm">Height (cm)</string>
+    <string name="txt_bmi_subtitle">Enter your height and weight to calculate your BMI</string>
+    <string name="weight_kg">Weight (kg)</string>
+    <string name="height_ft">Height (ft)</string>
+    <string name="your_bmi_is_30">Your BMI is: 30</string>
+    <string name="category_overweight">Category: Overweight</string>
+    <string name="calculate">Calculate</string>
+    <string name="weight_lb">Weight (lb)</string>
+    <string name="height_in">Height (in)</string>
 </resources>
