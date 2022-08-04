@@ -7,16 +7,34 @@
     android:orientation="vertical"
     android:background="@color/colorAccent">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarBmi"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/white"
+        android:background="@drawable/item_roundedrectangle_white"
+        android:foregroundGravity="right"
+        android:textAlignment="center"
         android:theme="@style/ToolbarTheme"
-        app:titleTextColor="@color/colorAccent"
+        app:titleTextColor="@color/colorAccent">
 
-        />
+    </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/tvUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cvBMI"
+        android:layout_alignRight="@id/cvBMI"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/item_roundedrectangle_white"
+        android:backgroundTint="#017C20"
+        android:padding="10dp"
+        android:text="Change Units"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvBMI"
@@ -30,6 +48,7 @@
         app:cardCornerRadius="12dp">
 
         <LinearLayout
+            android:id="@+id/ll_BmiMetric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -49,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="12dp"
-                android:text="Enter your height and weight to calculate yor BMI"
+                android:text="Enter your height and weight to calculate your BMI"
                 android:textColor="@color/colorPrimary"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -64,12 +83,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:hint="Height"
-                    android:inputType="textCapWords"
+                    android:hint="Height (cm)"
+                    android:inputType="number"
                     android:outlineProvider="none"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="#7A8089"
                     android:textIsSelectable="false" />
+
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -84,8 +104,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:hint="Weight"
-                    android:inputType="textCapWords"
+                    android:hint="Weight (kg)"
+                    android:inputType="number"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="#7A8089"
                     android:textIsSelectable="false" />
@@ -99,13 +119,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/colorAccent"
+                android:backgroundTint="#017C20"
                 android:text="Calculate"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
         </LinearLayout>
+
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -121,8 +142,9 @@
         android:layout_marginBottom="50dp"
         android:background="@color/white"
         android:backgroundTint="@color/white"
+        android:visibility="invisible"
         app:cardCornerRadius="12dp"
-        android:visibility="invisible">
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,6 +153,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvBmiResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Your BMI is: 30"
@@ -140,6 +163,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvBmiCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
