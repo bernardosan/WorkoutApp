@@ -11,8 +11,6 @@ import com.example.workoutapp.databinding.ActivityBmiBinding
 class BmiActivity : AppCompatActivity() {
     private var binding: ActivityBmiBinding? = null
 
-    private var isMetric: Boolean = true
-    private var isImperial: Boolean = false
     private var height: Float? = 0.0F
     private var heightInches: Float? = 0.0F
     private var weight: Float? = 0.0F
@@ -36,21 +34,20 @@ class BmiActivity : AppCompatActivity() {
         binding?.btnCalculateBMI?.setOnClickListener {
             it.hideKeyboard()
             binding?.cvResult?.visibility = View.INVISIBLE
-            if(isMetric == true){
+            if(binding?.rbMetric?.isChecked == true){
                 bmiCalculatorMetric()
-            } else if(isImperial == true){
+            } else if(binding?.rbImperial?.isChecked == true){
                 bmiCalculatorImperial()
             }
         }
 
 
-        binding?.tvUnit?.setOnClickListener {
-            if(isMetric == true) {
-                toImperialWindow()
+        binding?.rbImperial?.setOnClickListener() {
+            toImperialWindow()
+        }
 
-            } else {
-                toMetricWindow()
-            }
+        binding?.rbMetric?.setOnClickListener() {
+            toMetricWindow()
         }
 
     }
@@ -72,7 +69,7 @@ class BmiActivity : AppCompatActivity() {
             Toast.makeText(this, "Enter a valid Weight", Toast.LENGTH_LONG).show()
         } else if(weight!! <= 0) {
             Toast.makeText(this, "Enter a valid Height", Toast.LENGTH_LONG).show()
-        } else if (isMetric == true) {
+        } else {
             binding?.cvResult?.visibility = View.VISIBLE
             bmiResult = 10000*weight!!/(height!!*height!!)
             binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult)}"
@@ -93,7 +90,7 @@ class BmiActivity : AppCompatActivity() {
             Toast.makeText(this, "Enter a valid Weight", Toast.LENGTH_LONG).show()
         } else if( height!! <= 0 || heightInches!! <= 0) {
             Toast.makeText(this, "Enter a valid Height", Toast.LENGTH_LONG).show()
-        }  else if (isImperial == true) {
+        }  else {
             binding?.cvResult?.visibility = View.VISIBLE
             height = height!!*12 + heightInches!!
             bmiResult = 703* weight!!/(height!!*height!!)
@@ -114,8 +111,6 @@ class BmiActivity : AppCompatActivity() {
     }
 
     private fun toMetricWindow(){
-        isMetric = true
-        isImperial = false
         binding?.cvResult?.visibility = View.GONE
         binding?.tilMetricHeight?.visibility = View.VISIBLE
         binding?.tilMetricWeight?.visibility = View.VISIBLE
@@ -125,8 +120,6 @@ class BmiActivity : AppCompatActivity() {
     }
 
     private fun toImperialWindow(){
-        isMetric = false
-        isImperial = true
         binding?.cvResult?.visibility = View.GONE
         binding?.tilMetricHeight?.visibility = View.GONE
         binding?.tilMetricHeight?.visibility = View.GONE

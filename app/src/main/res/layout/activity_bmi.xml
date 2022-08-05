@@ -20,8 +20,49 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <RadioGroup
+        android:id="@+id/rgUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cvBMI"
+        android:layout_marginHorizontal="50dp"
+        android:background="@drawable/drawable_radio_group_tab_backgroud"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbMetric"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/drawable_units_tab_selector"
+            android:button="@null"
+            android:checked="true"
+            android:text="METRIC"
+            android:textAlignment="center"
+            android:textColor="@drawable/drawable_units_tab_text_color_selector"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbImperial"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/drawable_units_tab_selector"
+            android:checked="false"
+            android:text="IMPERIAL"
+            android:textColor="@drawable/drawable_units_tab_text_color_selector"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:button="@null"/>
+
+
+
+    </RadioGroup>
+
+
     <TextView
-        android:id="@+id/tvUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/cvBMI"
@@ -33,7 +74,8 @@
         android:text="@string/change_units"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvBMI"
@@ -192,7 +234,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="#017C20"
+                android:backgroundTint="@color/colorDarkAccent"
                 android:text="@string/calculate"
                 android:textAlignment="center"
                 android:textColor="@color/white"
