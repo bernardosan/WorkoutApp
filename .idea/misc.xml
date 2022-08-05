@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/circular_progress_bar.xml" value="0.375" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/circular_progress_gray.xml" value="0.375" />
         <entry key="..\:/Users/habbo/AndroidStudioProjects/WorkoutApp/app/src/main/res/drawable/drawable_radio_group_tab_backgroud.xml" value="0.2140625" />
