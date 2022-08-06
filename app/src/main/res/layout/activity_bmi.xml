@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/height_cm"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:outlineProvider="none"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="#7A8089"
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/weight_kg"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="#7A8089"
                     android:textIsSelectable="false" />
@@ -177,7 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:hint="@string/height_ft"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/colorPrimary"
                         android:textColorHint="#7A8089"
                         android:textIsSelectable="false" />
@@ -199,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:hint="@string/height_in"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/colorPrimary"
                         android:textColorHint="#7A8089"
                         android:textIsSelectable="false" />
@@ -221,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:hint="@string/weight_lb"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/colorPrimary"
                     android:textColorHint="#7A8089"
                     android:textIsSelectable="false" />

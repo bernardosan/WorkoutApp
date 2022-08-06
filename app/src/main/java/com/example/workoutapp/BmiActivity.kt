@@ -60,42 +60,45 @@ class BmiActivity : AppCompatActivity() {
 
     private fun bmiCalculatorMetric(){
 
-        height = binding?.etHeight?.text!!.toString().toFloat()
-        weight = binding?.etWeight?.text!!.toString().toFloat()
-
-        if(height == null || weight == null) {
+        if(binding?.etHeight?.text!!.isEmpty() || binding?.etWeight?.text!!.isEmpty()) {
             Toast.makeText(this, "Enter your Height and Weight!", Toast.LENGTH_LONG).show()
-        } else if(weight!! <= 0){
-            Toast.makeText(this, "Enter a valid Weight", Toast.LENGTH_LONG).show()
-        } else if(weight!! <= 0) {
-            Toast.makeText(this, "Enter a valid Height", Toast.LENGTH_LONG).show()
         } else {
-            binding?.cvResult?.visibility = View.VISIBLE
-            bmiResult = 10000*weight!!/(height!!*height!!)
-            binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult)}"
-            binding?.tvBmiCategory?.text = "Category: ${bmiCategory(bmiResult)}"
 
+            height = binding?.etImperialHeightFeet?.text.toString().toFloat()
+            weight = binding?.etImperialWeight?.text.toString().toFloat()
+
+            if(weight!! <= 0 || height!! <= 0){
+                Toast.makeText(this, "Enter a valid Height and Weight", Toast.LENGTH_LONG).show()
+            }  else {
+                binding?.cvResult?.visibility = View.VISIBLE
+                bmiResult = 10000*weight!!/(height!!*height!!)
+                binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult)}"
+                binding?.tvBmiCategory?.text = "Category: ${bmiCategory(bmiResult)}"
+
+            }
         }
     }
 
     private fun bmiCalculatorImperial(){
 
-        height = binding?.etImperialHeightFeet?.text!!.toString().toFloat()
-        heightInches = binding?.etImperialHeightInches?.text!!.toString().toFloat()
-        weight = binding?.etImperialWeight?.text!!.toString().toFloat()
-
-        if(height == null && heightInches == null && weight == null ) {
+        if(binding?.etHeight?.text!!.isEmpty() && binding?.etImperialHeightInches?.text!!.isEmpty() && binding?.etWeight?.text!!.isEmpty()) {
             Toast.makeText(this, "Enter your Height and Weight!", Toast.LENGTH_LONG).show()
-        } else if( weight!! <= 0){
-            Toast.makeText(this, "Enter a valid Weight", Toast.LENGTH_LONG).show()
-        } else if( height!! <= 0 || heightInches!! <= 0) {
-            Toast.makeText(this, "Enter a valid Height", Toast.LENGTH_LONG).show()
-        }  else {
-            binding?.cvResult?.visibility = View.VISIBLE
-            height = height!!*12 + heightInches!!
-            bmiResult = 703* weight!!/(height!!*height!!)
-            binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult)}"
-            binding?.tvBmiCategory?.text = "Category: ${bmiCategory(bmiResult)}"
+        } else {
+
+            height = binding?.etImperialHeightFeet?.text.toString().toFloat()
+            heightInches = binding?.etImperialHeightInches?.text.toString().toFloat()
+            weight = binding?.etImperialWeight?.text.toString().toFloat()
+
+
+            if( weight!! <= 0 || height!! <= 0 || heightInches!! <= 0){
+                Toast.makeText(this, "Enter a valid Height and Weight", Toast.LENGTH_LONG).show()
+            }  else {
+                binding?.cvResult?.visibility = View.VISIBLE
+                height = height!!*12 + heightInches!!
+                bmiResult = 703* weight!!/(height!!*height!!)
+                binding?.tvBmiResult?.text = "Your BMI is: ${String.format("%.2f", bmiResult)}"
+                binding?.tvBmiCategory?.text = "Category: ${bmiCategory(bmiResult)}"
+            }
         }
     }
 
