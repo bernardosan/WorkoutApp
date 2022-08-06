@@ -34,6 +34,9 @@
         <activity
             android:name=".BmiActivity"
             android:exported="true" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
