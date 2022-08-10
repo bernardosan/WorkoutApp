@@ -12,12 +12,15 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workoutapp.databinding.ActivityExerciseBinding
 import com.example.workoutapp.databinding.DialogCustomBackConfirmationBinding
+import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 import java.lang.Exception
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -187,6 +190,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     setupRestView()
                 } else{
                     Toast.makeText(this@ExerciseActivity, "You finished your Workout!", Toast.LENGTH_LONG).show()
+                    val exerciseDao = (application as WorkoutApp).db.exerciseDao()
+                    addRecord(exerciseDao)
+
                     val intent = Intent(this@ExerciseActivity, FinishActivity::class.java )
                     startActivity(intent)
                     finish()
@@ -236,6 +242,32 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun speakOut(s: String) {
         tts?.speak(s, TextToSpeech.QUEUE_FLUSH, null, "")
+    }
+
+    fun addRecord(exerciseDao: ExerciseDao) {
+        val name = "Exercise"
+        val date = getCurrentDateTime().toString("dd/MM/yyyy HH:mm:ss")
+        if (name.isNotEmpty() && date.isNotEmpty()) {
+            lifecycleScope.launch {
+                exerciseDao.insert(ExerciseEntity(name = name, date = date))
+                Toast.makeText(applicationContext, "Exercise saved", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                "Failed to save the exercise",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
+    }
+
+    fun getCurrentDateTime(): Date {
+        return Calendar.getInstance().time
     }
 
 
