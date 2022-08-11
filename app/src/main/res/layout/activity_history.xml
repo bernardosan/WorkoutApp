@@ -63,11 +63,12 @@
                 android:id="@+id/tvBmiResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BMI History"
+                android:text="Exercise History"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 app:layout_constraintTop_toBottomOf="@id/tvName"
@@ -75,7 +76,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                android:layout_marginBottom="20dp"/>
 
             <TextView
                 android:id="@+id/tvNoRecordsAvailable"

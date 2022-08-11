@@ -62,10 +62,10 @@ class BmiActivity : AppCompatActivity() {
 
         if(binding?.etHeight?.text!!.isEmpty() || binding?.etWeight?.text!!.isEmpty()) {
             Toast.makeText(this, "Enter your Height and Weight!", Toast.LENGTH_LONG).show()
-        } else {
+        } else  {
 
-            height = binding?.etImperialHeightFeet?.text.toString().toFloat()
-            weight = binding?.etImperialWeight?.text.toString().toFloat()
+            height = binding?.etHeight?.text.toString().toFloat()
+            weight = binding?.etWeight?.text.toString().toFloat()
 
             if(weight!! <= 0 || height!! <= 0){
                 Toast.makeText(this, "Enter a valid Height and Weight", Toast.LENGTH_LONG).show()
