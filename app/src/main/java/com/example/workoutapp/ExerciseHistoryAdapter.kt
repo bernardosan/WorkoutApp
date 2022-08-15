@@ -27,7 +27,7 @@ class ExerciseHistoryAdapter (private val items: ArrayList<ExerciseEntity>,
         val context = holder.itemView.context
         val item = items[position]
 
-        holder.tvName.text = item.name
+        holder.tvName.text = item.name + item.id.toString()
         holder.tvDate.text = item.date
 
         if(position % 2 == 0){

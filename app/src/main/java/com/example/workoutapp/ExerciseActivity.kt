@@ -189,7 +189,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 if(currentExercisePosition < exerciseList?.size!! - 1){
                     setupRestView()
                 } else{
-                    Toast.makeText(this@ExerciseActivity, "You finished your Workout!", Toast.LENGTH_LONG).show()
                     val exerciseDao = (application as WorkoutApp).db.exerciseDao()
                     addRecord(exerciseDao)
 
